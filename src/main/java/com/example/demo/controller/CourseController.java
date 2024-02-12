@@ -9,13 +9,12 @@ import java.util.List;
 
 // CourseController.java
 @RestController
-@RequestMapping("/api/user")
 public class CourseController {
     @Autowired
     private CourseRepository courseRepository;
 
-    @GetMapping("/student/get-all-courses")
-    public List<Course> getAllCourses() {
+    @GetMapping("/admin/courses")
+    public List<Course> getAllCourses(@RequestHeader(value = "Authorization") String token) {
         return courseRepository.findAll();
     }
 

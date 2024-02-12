@@ -4,7 +4,7 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import java.util.ArrayList;
 
-@Document(collation = "Students")
+@Document(collection = "users")
 public class User {
     @Id
     private String id;
@@ -94,8 +94,27 @@ public class User {
         this.email = email;
     }
 
-    public ArrayList<String> getRoles() {
-        return roles;
+//    public String[] getRoles() {
+//        ArrayList<String> newRole = new ArrayList<>();
+//
+//        for(String role : roles){
+//            newRole.add("ROLE_" + role);
+//
+//            System.out.println(role);
+//        }
+//        return (String[]) newRole.toArray();
+//    }
+    public String[] getRoles() {
+        ArrayList<String> newRoles = new ArrayList<>();
+
+        for (String role : roles) {
+            newRoles.add("ROLE_" + role);
+
+            System.out.println(role);
+        }
+
+        // Convert the ArrayList to an array of String
+        return newRoles.toArray(new String[0]);
     }
 
     public void setRoles(ArrayList<String> roles) {

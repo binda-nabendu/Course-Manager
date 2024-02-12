@@ -1,21 +1,16 @@
 package com.example.demo.entity;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.mapping.Field;
 
-@Document(collation = "Courses")
+@Document(collection = "courses")
 public class Course {
     @Id
     private String courseCode;
     private String title;
     private int credits;
 
-    public Course(String id, String courseCode, String title, int credits) {
-        this.courseCode = id;
-        this.title = title;
-        this.credits = credits;
-    }
     public Course(String courseCode, String title, int credits) {
-        this.courseCode = courseCode;
         this.courseCode = courseCode;
         this.title = title;
         this.credits = credits;

@@ -44,6 +44,7 @@ public class DummyDataLoader implements CommandLineRunner {
                         "0167767566",
                         "01877867546")), new ArrayList<String>(Arrays.asList("STUDENT", "ADMIN")), passwordEncoder.encode("1111"));
         userRepository.save(user1);
+        userRepository.save(user2);
 
         // Insert dummy course data
         Course course1 = new Course("CS101", "Introduction to Computer Science", 3);

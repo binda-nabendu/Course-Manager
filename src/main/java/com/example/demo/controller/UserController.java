@@ -9,9 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Optional;
 
-// UserController.java
 @RestController
-@RequestMapping("/api/user")
 public class UserController {
     @Autowired
     private UserRepository userRepository;
