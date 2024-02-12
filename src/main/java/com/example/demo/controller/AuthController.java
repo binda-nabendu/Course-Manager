@@ -1,8 +1,7 @@
-package com.example.demo.Controller;
-import com.example.demo.Entity.JwtRequest;
-import com.example.demo.Entity.JwtResponse;
-import com.example.demo.Security.JwtTokenUtil;
-import com.example.demo.Security.JwtUserDetailsService;
+package com.example.demo.controller;
+import com.example.demo.entity.JwtRequest;
+import com.example.demo.entity.JwtResponse;
+import com.example.demo.security.JwtTokenUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -24,9 +23,6 @@ public class AuthController {
 
     @Autowired
     private JwtTokenUtil jwtTokenUtil;
-
-    @Autowired
-    private JwtUserDetailsService userDetailsService;
 
     @PostMapping("/authenticate")
     public ResponseEntity<?> createAuthenticationToken(@RequestBody JwtRequest authenticationRequest) throws Exception {

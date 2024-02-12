@@ -1,7 +1,7 @@
-package com.example.demo.Security;
+package com.example.demo.security;
 
-import com.example.demo.Entity.User;
-import com.example.demo.Repository.UserRepository;
+import com.example.demo.entity.User;
+import com.example.demo.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -19,13 +19,13 @@ public class JwtUserDetailsService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String userId) throws UsernameNotFoundException {
-        Optional<User> optionalUser = userRepository.findById(Long.decode(userId));
+        Optional<User> optionalUser = userRepository.findById(userId);
 
         return optionalUser.map(user -> new org.springframework.security.core.userdetails.User(
-                user.getUsername(),
+                user.getId(),
                 user.getPassword(),
                 // You may need to adjust authorities based on your roles logic
-                AuthorityUtils.createAuthorityList("ROLE_" + user.getRole())
+                AuthorityUtils.createAuthorityList("ROLE_" + user.getRoles())
         )).orElseThrow(() -> new UsernameNotFoundException("User not found with username: " + userId));
     }
 }

@@ -1,13 +1,10 @@
-package com.example.demo.Entity;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+package com.example.demo.entity;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
-@Entity
+@Document(collation = "Courses")
 public class Course {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private String courseCode;
     private String title;
     private int credits;

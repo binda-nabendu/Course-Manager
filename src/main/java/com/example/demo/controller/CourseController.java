@@ -1,7 +1,7 @@
-package com.example.demo.Controller;
+package com.example.demo.controller;
 
-import com.example.demo.Entity.Course;
-import com.example.demo.Repository.CourseRepository;
+import com.example.demo.entity.Course;
+import com.example.demo.repository.CourseRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -9,20 +9,19 @@ import java.util.List;
 
 // CourseController.java
 @RestController
-@RequestMapping("/api/courses")
+@RequestMapping("/api/user")
 public class CourseController {
     @Autowired
     private CourseRepository courseRepository;
 
-    @GetMapping
+    @GetMapping("/student/get-all-courses")
     public List<Course> getAllCourses() {
         return courseRepository.findAll();
     }
 
-    @PostMapping
+    @PostMapping("/admin/make-a-course")
     public Course createCourse(@RequestBody Course course) {
         return courseRepository.save(course);
     }
 
-    // Implement other CRUD APIs as needed
 }

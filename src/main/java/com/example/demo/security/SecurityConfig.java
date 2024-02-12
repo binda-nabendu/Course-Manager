@@ -1,6 +1,7 @@
-package com.example.demo.Security;
+package com.example.demo.security;
 
 import org.springframework.context.annotation.Bean;
+import org.springframework.data.mongodb.repository.config.EnableMongoRepositories;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -13,6 +14,7 @@ import org.springframework.security.config.annotation.web.configuration.*;
 
 @Configuration
 @EnableWebSecurity
+@EnableMongoRepositories
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
@@ -28,8 +30,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/api/admin/**").hasRole("ADMIN")
-                .antMatchers("/api/student/**").hasRole("STUDENT")
+                .antMatchers("/api/user/admin/**").hasRole("ADMIN")
+                .antMatchers("/api/user/student/**").hasRole("STUDENT")
+                .antMatchers("/api/user/**").hasAnyRole("ADMIN", "STUDENT")
                 .antMatchers("/api/**").permitAll()
                 .anyRequest().authenticated()
                 .and()
