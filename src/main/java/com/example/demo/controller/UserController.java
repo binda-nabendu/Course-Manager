@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
+@CrossOrigin(origins = "*")
 public class UserController {
     @Autowired
     private UserRepository userRepository;
@@ -31,7 +32,9 @@ public class UserController {
 
     @PostMapping("/admin/create-new-user")
     public User createUser(@RequestBody User user) {
-        return userRepository.save(user);
+        System.out.println(user);
+        userRepository.save(user);
+        return user;
     }
 
     @PutMapping("/admin/{id}")

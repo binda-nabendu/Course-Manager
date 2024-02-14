@@ -9,12 +9,13 @@ import java.util.List;
 
 // CourseController.java
 @RestController
+@CrossOrigin(origins = "*")
 public class CourseController {
     @Autowired
     private CourseRepository courseRepository;
 
-    @GetMapping("/admin/courses")
-    public List<Course> getAllCourses(@RequestHeader(value = "Authorization") String token) {
+    @GetMapping("/student/courses")
+    public List<Course> getAllCourses() {
         return courseRepository.findAll();
     }
 
