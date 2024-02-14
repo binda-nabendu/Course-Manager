@@ -94,16 +94,6 @@ public class User {
         this.email = email;
     }
 
-//    public String[] getRoles() {
-//        ArrayList<String> newRole = new ArrayList<>();
-//
-//        for(String role : roles){
-//            newRole.add("ROLE_" + role);
-//
-//            System.out.println(role);
-//        }
-//        return (String[]) newRole.toArray();
-//    }
     public String[] getRoles() {
         ArrayList<String> newRoles = new ArrayList<>();
 

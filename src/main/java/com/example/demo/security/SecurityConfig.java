@@ -33,9 +33,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http//.csrf()//.disable()
+        http.csrf().disable()
                 .authorizeRequests()
                 .antMatchers("/admin/**").hasRole("ADMIN")
+                .antMatchers("/student/**").hasAnyRole("STUDENT","ADMIN")
                 .antMatchers("/**").permitAll()
                 .anyRequest().authenticated()
                 .and()
@@ -44,21 +45,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
         http.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
     }
-
-//    @Override
-//    protected void configure(HttpSecurity http) throws Exception {
-//        http
-//                .csrf().disable()
-//                .authorizeRequests()
-//                .antMatchers("/admin/**").hasRole("ADMIN")
-//                .antMatchers("/student/**").hasAnyRole("STUDENT","ADMIN")
-//                .antMatchers("/**").permitAll()
-//                .anyRequest().authenticated()
-//                .and()
-//                .formLogin()
-//                .and()
-//                .logout().logoutSuccessUrl("/").permitAll();
-//    }
 
     @Override
     @Bean
